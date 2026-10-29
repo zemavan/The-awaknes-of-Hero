@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 public class Main {
+        Scanner sc = new Scanner(System.in);
         public static void ClearConsole() {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -11,8 +12,7 @@ public class Main {
                 Random rn = new Random();
                 int exponentValue = rn.nextInt(0,10);
                 return exponentValue;
-        }  //int exponentValue = RandomExp();
-
+        }
         public static int ExponentResult(int exponentValue){
 
             int base = 2;
@@ -23,23 +23,48 @@ public class Main {
                 exponentResult *= base;
             }
             return exponentResult;
-        }   // int exponentResult = ExponentResult();
-
+        }
         public static int ExponentResultUser(){
             Scanner sc = new Scanner(System.in);
             System.out.print("❯  ");
             int exponentResultUser = sc.nextInt();
             return exponentResultUser;
-        } // int exponentResultUser = ExponentResultUser();
-        public static boolean ExponentResultCheck(int exponentResult, int exponentResultUser){
-            if(exponentResult!=exponentResultUser){
-                System.out.println("FALSE");
-                return false;
-            }else{
+        }
+
+
+        public static boolean Battle(){
+            int enemy_hp = 100;
+            int my_hp = 100;
+
+            do{
+            EnemyShow();
+            int exponentValue = RandomExp();
+            int exponentResult = ExponentResult(exponentValue);
+            int exponentResultUser = ExponentResultUser();
+            if(exponentResult == exponentResultUser){
                 System.out.println("TRUE");
-                return true;
+                enemy_hp -= 25;
+                System.out.println("My HP: "+my_hp);
+                System.out.println("Enemy HP: "+enemy_hp);
+
+
+            }else{
+                System.out.println("FALSE");
+                my_hp -= 25;
+                System.out.println("My HP: "+my_hp);
+                System.out.println("Enemy HP: "+enemy_hp);
+
             }
-        }   //boolean exponentResultCheck = ExponentResultCheck;
+            }while(enemy_hp > 0 && my_hp > 0);
+
+            if(enemy_hp <= 0){
+                System.out.println("YOU WON");
+            }else{
+                System.out.println("YOU LOST");
+            }
+
+        return my_hp>0;
+        }
         public static void EnemyShow(){
             System.out.println("       ***     ");
                          System.out.println("      (___)   * ");
@@ -49,68 +74,8 @@ public class Main {
                          System.out.println("   /  { _ }     ");
                          System.out.println("  *  /_| |_|     ");
                          System.out.println("");
-
-        } //String enemyShow = EnemyShow();
-
-        public static int WrongMe(boolean exponentResultCheck, int my_hp, int enemy_hp){
-            if(exponentResultCheck == false){
-                my_hp -=25;
-                System.out.println("My HP: "+my_hp);
-                System.out.println("Sentinel HP: "+enemy_hp);
-
-
-            }
-            return my_hp;
         }
 
-        public static int RightMe(boolean exponentResultCheck, int enemy_hp, int my_hp){
-            if(exponentResultCheck == true){
-                enemy_hp -= 25;
-                System.out.println("My HP: "+my_hp);
-                System.out.println("Sentinel HP: "+enemy_hp);
-
-
-            }
-            return enemy_hp;
-        }
-
-        public static void Winner(int enemy_hp, int my_hp){
-            if(enemy_hp == 0){
-                System.out.println("          ***     ");
-                                    System.out.println("     ++YOU WON++    ");
-
-                             System.out.println("                           ");
-                             System.out.println("                                ");
-                             System.out.println("                   ");
-                             System.out.println("             / | _ |          ( @ @ ) /  ");
-                             System.out.println("           /  { _ }    )-@-( ");
-                             System.out.println("  *  /_| |_|     ");
-                             System.out.println("");
-            }else{
-                    System.out.println("    --YOU LOST--  ");
-                    System.out.println("       ***     ");
-                                 System.out.println("   *  (___)   * ");
-                                 System.out.println("   \\ ( @ @ ) /    ");
-                                 System.out.println("    \\ )-@-( /    ");
-                                 System.out.println("      | _ |     ");
-                                 System.out.println("      { _ }     ");
-                                 System.out.println("     /_| |_|     ");
-                                 System.out.println("");
-            }
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public static void PrintEnemyCliMotionOne(){
-
-                    System.out.println("       ***     ");
-                    System.out.println("      (___)   * ");
-                    System.out.println("     ( @ @ ) /    ");
-                    System.out.println("      )-@-( /    ");
-                    System.out.println("    / | _ |     ");
-                    System.out.println("   /  { _ }     ");
-                    System.out.println("  *  /_| |_|     ");
-
-                }
 
     public static void firstEnemy(){
         Enemy enemy = new Enemy(100, 25);
@@ -133,46 +98,34 @@ public class Main {
         ChapterOneScenarioOneOptionOne();
 
 
-
-
     }
     public static void ChapterOneScenarioOneOptionOne(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ir a casa de Vasya y encotrar su portatil");
-        System.out.println("");
+        System.out.println("(Ir a casa de Vasya y encotrar su portatil)");
         System.out.println("Petya coge una bici y va a la casa donde antes vivia Vasya");
-        System.out.println("");
-        System.out.println("mmmh");
-        System.out.println("");
 
-        System.out.println("el piso 7, subo por las escalers o por un ascensor?");
+        // System.out.println("el piso 7, subo por las escalers o por un ascensor?");
         System.out.println("");
         System.out.println("1 - subir por las escaleras\n2 - Subir por un ascensor");
         System.out.println("");
 
-
         int escalerasAscensor = sc.nextInt();
-        // int optionOscOoptOne = sc.nextInt();
         switch(escalerasAscensor){
             case 1:
             System.out.println("Pues vamos a subir por las escaleras");
             System.out.println("Oh no, Sentinel ");
             System.out.println("ganar a Sentinel");
 
+            Battle();
 
 
-            PrintEnemyCliMotionOne();
+
+            // PrintEnemyCliMotionOne();
             break;
             case 2: System.out.println
             ("<<Pulsa el boton para llamar el ascensor>>\n Parece que no funciona, \npues vamos a subir por las escaleras ");
-            PrintEnemyCliMotionOne();
             break;
         }
-
-
-
-
-
 
     }
     public static void ChapterOneScenarioOneOptionTwo(){
@@ -196,7 +149,7 @@ public class Main {
         }
     }
 
-    public static int ChapterOneScenarioOne(){
+    public static void ChapterOneScenarioOne(){
         Scanner sc = new Scanner(System.in);
         System.out.println("chapterOneScenarioOne");
 
@@ -207,8 +160,14 @@ public class Main {
         System.out.println("2 - Analizar los procesos del sistema");
         System.out.println("3 - No debo prestar atencion a este mensaje");
         System.out.println(": ");
-        int optionOscO = sc.nextInt();
-        return optionOscO;
+        int optionScenario = sc.nextInt();
+
+            switch(optionScenario){
+                case 1: ChapterOneScenarioOneOptionOne();break;
+                case 2: ChapterOneScenarioOneOptionTwo();break;
+                case 3: ChapterOneScenarioOneOptionThree();break;
+            }
+
     }
     public static int Menu(){
         Scanner sc = new Scanner(System.in);
@@ -224,48 +183,23 @@ public class Main {
 	public static void main(String[] args){
     Scanner sc = new Scanner(System.in);
 
+
+
     boolean running = true;
     while(running){
     int menu = Menu();
-    int optionOscO = 0; //int optionOO is optionChapterOneScenarioOne
-    // int optionOT = 0; // int optionOT is optionChapterOneScenarioTwo
         ClearConsole();
         switch(menu){
             case 1:
-            optionOscO = ChapterOneScenarioOne();
-            running = false;
-            break;
-            case 2: System.out.println("Rankings --"); running = false; break;
-            case 3: System.out.println("Options --"); running = false; break;
-            case 4: System.out.println("exited --"); running = false; break;
+            ChapterOneScenarioOne();break;
+            case 2: System.out.println("Rankings --");break;
+            case 3: System.out.println("Options --");break;
+            case 4: System.out.println("exited --");
+            running = false; break;
             default: System.out.println("");
+            running = false;
+
         }
-
-        switch(optionOscO){
-            case 1: ChapterOneScenarioOneOptionOne(); // go to vasya's house
-            int enemy_hp = 100;
-            int my_hp = 100;
-            do{
-            int exponentValue = RandomExp();
-
-            EnemyShow();
-
-            int exponentResult = ExponentResult(exponentValue);
-            int exponentResultUser = ExponentResultUser();
-            boolean exponentResultCheck = ExponentResultCheck(exponentResult, exponentResultUser);
-            enemy_hp = RightMe(exponentResultCheck, enemy_hp, my_hp);
-            my_hp = WrongMe(exponentResultCheck, my_hp, enemy_hp);
-            }while(enemy_hp>0 && my_hp >0);
-            Winner(enemy_hp,my_hp);
-            break;
-
-
-            case 2: ChapterOneScenarioOneOptionTwo(); // open terminal
-            break;
-            case 3: ChapterOneScenarioOneOptionThree();  // dont mind
-            break;
-        }
-
-    	}
- }
+    }
+}
 }
