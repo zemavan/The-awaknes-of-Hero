@@ -32,38 +32,29 @@ public class Main {
         }
 
 
-        public static boolean Battle(){
-            int enemy_hp = 100;
-            int my_hp = 100;
+        public static boolean Battle(Fighter enemy, Fighter petya){
 
             do{
             EnemyShow();
             int exponentValue = RandomExp();
             int exponentResult = ExponentResult(exponentValue);
             int exponentResultUser = ExponentResultUser();
-            if(exponentResult == exponentResultUser){
+            if(exponentResult == exponentResultUser)
+            {
                 System.out.println("TRUE");
-                enemy_hp -= 25;
-                System.out.println("My HP: "+my_hp);
-                System.out.println("Enemy HP: "+enemy_hp);
-
-
-            }else{
+                petya.attack(enemy);
+            }
+            else
+            {
                 System.out.println("FALSE");
-                my_hp -= 25;
-                System.out.println("My HP: "+my_hp);
-                System.out.println("Enemy HP: "+enemy_hp);
-
+                enemy.attack(petya);
             }
-            }while(enemy_hp > 0 && my_hp > 0);
+            System.out.println("Petya hp: " + petya.getHp());
+            System.out.println("Enemy HP: "+ enemy.getHp());
 
-            if(enemy_hp <= 0){
-                System.out.println("YOU WON");
-            }else{
-                System.out.println("YOU LOST");
-            }
+            }while(enemy.isAlive() && petya.isAlive());
 
-        return my_hp>0;
+            return petya.isAlive();
         }
         public static void EnemyShow(){
             System.out.println("       ***     ");
@@ -77,10 +68,10 @@ public class Main {
         }
 
 
-        public static void firstEnemy(){
-            Enemy enemy = new Enemy(100, 25);
-            enemy.ShowEnemy();
-        }
+        // public static void firstEnemy(){
+        //     Enemy enemy = new Enemy(100, 25);
+        //     enemy.ShowEnemy();
+        // }
 
 
         public static void SubiendoEscaleras(){
@@ -88,14 +79,14 @@ public class Main {
 
         }
 
-        public static void ChapterOneScenarioOneOptionThree(){
+        public static void ChapterOneScenarioOneOptionThree(Fighter enemy, Fighter petya){
             Scanner sc = new Scanner(System.in);
             System.out.println("Vasya esta en coma, por lo que no me puede escribir eso");
             System.out.println("Admeas estoy cansado, lo revisare despues si es un virus");
             System.out.println("");
             System.out.println("(10 minutos despues)");
             System.out.println("Hey Vasya yo se que estas aqui, urgentemente encuentra mi portatil");
-            ChapterOneScenarioOneOptionOne();
+            ChapterOneScenarioOneOptionOne(enemy, petya);
 
 
         }
@@ -178,7 +169,7 @@ public class Main {
             }
         }
         }
-        public static void ChapterOneScenarioOneOptionOne(){
+        public static void ChapterOneScenarioOneOptionOne(Fighter enemy, Fighter petya){
             Scanner sc = new Scanner(System.in);
             System.out.println("(Ir a casa de Vasya y encotrar su portatil)");
             System.out.println("Petya coge una bici y va a la casa donde antes vivia Vasya");
@@ -195,7 +186,17 @@ public class Main {
             System.out.println("Oh no, Sentinel ");
             System.out.println("Objetivo: ganar a Sentinel");
 
-            Battle();break;
+            boolean win = Battle(enemy, petya);
+            if(win){
+                System.out.println("You win");
+                System.out.println("Falta encontrar el portatil de Vasya");
+            }
+            else{
+                System.out.println("You lost");
+                System.out.println("Try again");
+
+            }
+            break;
             case 2: System.out.println
             ("<<Pulsa el boton para llamar el ascensor>>\n Parece que no funciona, \npues vamos a subir por las escaleras ");
             break;
@@ -204,7 +205,7 @@ public class Main {
     }
 
 
-    public static void ChapterOneScenarioOne(){
+    public static void ChapterOneScenarioOne(Fighter enemy, Fighter petya){
         Scanner sc = new Scanner(System.in);
         boolean running = true;
         while(running){
@@ -217,9 +218,9 @@ public class Main {
         int optionScenario = sc.nextInt();
 
             switch(optionScenario){
-                case 1: ChapterOneScenarioOneOptionOne();break;
+                case 1: ChapterOneScenarioOneOptionOne(enemy, petya);break;
                 case 2: ChapterOneScenarioOneOptionTwo();break;
-                case 3: ChapterOneScenarioOneOptionThree();break;
+                case 3: ChapterOneScenarioOneOptionThree(enemy, petya);break;
                 case 4: running = false;
             }
         }
@@ -239,10 +240,15 @@ public class Main {
 
 
     public static void main(String[] args){
+
+
     Scanner sc = new Scanner(System.in);
     System.out.println("Put ur nickname: ");
     String name = sc.nextLine();
     Username username = new Username(name);
+    Fighter enemy = new Fighter("Sentinel", 100, 25);
+    Fighter petya = new Fighter("Petya", 100, 25);
+    // System.out.println("enemy hp" + enemy.getHp());
     // System.out.println(username.getUsername());
     boolean running = true;
     while(running){
@@ -252,7 +258,7 @@ public class Main {
             case 1:
             System.out.println("(A Petya le llega un mensaje cifrado por su terminal)");
             System.out.println("(cifrado) Petya, si puedes leer esto, encuentra mi portatil");
-            ChapterOneScenarioOne();break;
+            ChapterOneScenarioOne(enemy, petya);break;
             case 2: System.out.println("Rankings --");
             System.out.println(username.getUsername());break;
             case 3: System.out.println("Options --");break;
