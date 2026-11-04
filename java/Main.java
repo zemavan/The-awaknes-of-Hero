@@ -79,18 +79,18 @@ public class Main {
 
         }
 
-        public static void ChapterOneScenarioOneOptionThree(Fighter enemy, Fighter petya){
+        public static void ChapterOneScenarioOneOptionThree(Fighter enemy, Fighter petya, Ranking rank){
             Scanner sc = new Scanner(System.in);
             System.out.println("Vasya esta en coma, por lo que no me puede escribir eso");
             System.out.println("Admeas estoy cansado, lo revisare despues si es un virus");
             System.out.println("");
             System.out.println("(10 minutos despues)");
             System.out.println("Hey Vasya yo se que estas aqui, urgentemente encuentra mi portatil");
-            ChapterOneScenarioOneOptionOne(enemy, petya);
+            ChapterOneScenarioOneOptionOne(enemy, petya, rank);
 
 
         }
-        public static void ChapterOneScenarioOneOptionTwo(){
+        public static void ChapterOneScenarioOneOptionTwo(Ranking rank){
             Scanner sc = new Scanner(System.in);
             boolean running = true;
             while(running){
@@ -106,7 +106,7 @@ public class Main {
                     // running = false;
                     System.out.println("END");
                     if(Checker("Continuar analizando? ")){
-                        JournalCheck();
+                        JournalCheck(rank);
                         running = false;
                     }else{
                         running = false;
@@ -140,36 +140,39 @@ public class Main {
             return option.equals("Y");
 
         }
-        public static void JournalCheck(){
-            boolean running = true;
+        public static void JournalCheck(Ranking rank){
             Scanner sc = new Scanner(System.in);
+            int counter = 0;
+            String result = "journalctl -u -ssh -f";
+            boolean correcto = false;
+
             System.out.println("Introduce commando para ver logs de ssh en tiempo real");
+            while(!correcto){
+                if(counter>=1){
+                    System.out.println("HELP: j********* -u -ssh -f");
+                }
             System.out.print("❯  ");
             String command = sc.nextLine();
-            if(command.equals("journalctl -u -ssh -f")){
-                System.out.println("Oct 30 10:00:12 cachyos sshd[1234]: Accepted publickey for vasyahelp from 192.168.1.105 port 54321 ssh2\nOct 30 10:00:12 cachyos sshd[1234]: pam_unix(sshd:session): session opened for user vasya");
-
+            if(command.equals(result)){
+                correcto = true;
             }else{
-                while(running){
-                System.out.println("HELP: j********* -u -ssh -f");
-                System.out.print("❯  ");
-                String secondTry = sc.nextLine();
-                if(secondTry.equals("journalctl -u -ssh -f")){
-                    System.out.println("Oct 30 10:00:12 cachyos sshd[1234]: Accepted publickey for vasyahelp from 192.168.1.105 port 54321 ssh2\nOct 30 10:00:12 cachyos sshd[1234]: pam_unix(sshd:session): session opened for user vasya");
-                    System.out.println("Hemos terminado con el analisis del sistema, para continuar con el juego introduce cualquier numero:  ");
-                    int user = sc.nextInt();
-                    running = false;
-
-                }
-                else{
-                    if(!Checker("Probar otra vez?")){
-                        running = false;
-                    }
+                counter++;
+                if(counter>=2 && !Checker("Probar otra vez? ")){
+                    break;
                 }
             }
-        }
-        }
-        public static void ChapterOneScenarioOneOptionOne(Fighter enemy, Fighter petya){
+            }
+
+            if(correcto){
+                System.out.println("Oct 30 10:00:12 cachyos sshd[1234]: Accepted publickey for vasyahelp from 192.168.1.105 port 54321 ssh2\nOct 30 10:00:12 cachyos sshd[1234]: pam_unix(sshd:session): session opened for user vasya");
+                System.out.println("Hemos terminado con el analisis del sistema, para continuar con el juego introduce cualquier numero:  ");
+                rank.Points(3);
+            }
+            System.out.println("Hemos terminado con el analisis del sistema, para continuar con el juego introduce cualquier numero:  ");
+            System.out.println(rank.getPoints());
+
+         }
+        public static void ChapterOneScenarioOneOptionOne(Fighter enemy, Fighter petya, Ranking rank){
             Scanner sc = new Scanner(System.in);
             System.out.println("(Ir a casa de Vasya y encotrar su portatil)");
             System.out.println("Petya coge una bici y va a la casa donde antes vivia Vasya");
@@ -205,22 +208,22 @@ public class Main {
     }
 
 
-    public static void ChapterOneScenarioOne(Fighter enemy, Fighter petya){
+    public static void ChapterOneScenarioOne(Fighter enemy, Fighter petya, Ranking rank){
         Scanner sc = new Scanner(System.in);
         boolean running = true;
         while(running){
         System.out.println("chapterOneScenarioOne");
         System.out.println("Choose option 1-3: ");
         System.out.println("1 - Ir a casa de Vasya y encotrar su portatil");
-        System.out.println("2 - Analizar los procesos del sistema");
+        System.out.println("2 - Analizar los procesos del sistema (3 puntos)");
         System.out.println("3 - No debo prestar atencion a este mensaje");
         System.out.println("4 - Volver al menu principal ");
         int optionScenario = sc.nextInt();
 
             switch(optionScenario){
-                case 1: ChapterOneScenarioOneOptionOne(enemy, petya);break;
-                case 2: ChapterOneScenarioOneOptionTwo();break;
-                case 3: ChapterOneScenarioOneOptionThree(enemy, petya);break;
+                case 1: ChapterOneScenarioOneOptionOne(enemy, petya, rank);break;
+                case 2: ChapterOneScenarioOneOptionTwo(rank);break;
+                case 3: ChapterOneScenarioOneOptionThree(enemy, petya, rank);break;
                 case 4: running = false;
             }
         }
@@ -240,12 +243,16 @@ public class Main {
 
 
     public static void main(String[] args){
-
-
     Scanner sc = new Scanner(System.in);
+
+
+
     System.out.println("Put ur nickname: ");
     String name = sc.nextLine();
-    Username username = new Username(name);
+    Ranking rank = new Ranking(name, 0);
+
+
+
     Fighter enemy = new Fighter("Sentinel", 100, 25);
     Fighter petya = new Fighter("Petya", 100, 25);
     // System.out.println("enemy hp" + enemy.getHp());
@@ -258,9 +265,14 @@ public class Main {
             case 1:
             System.out.println("(A Petya le llega un mensaje cifrado por su terminal)");
             System.out.println("(cifrado) Petya, si puedes leer esto, encuentra mi portatil");
-            ChapterOneScenarioOne(enemy, petya);break;
+            ChapterOneScenarioOne(enemy, petya, rank);break;
             case 2: System.out.println("Rankings --");
-            System.out.println(username.getUsername());break;
+            System.out.println(rank.getUsername());
+            System.out.println(rank.getPoints());
+
+
+
+            break;
             case 3: System.out.println("Options --");break;
             case 4: System.out.println("exited --");
             running = false; break;
