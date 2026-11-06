@@ -172,6 +172,8 @@ public class Main {
             System.out.println(rank.getPoints());
 
          }
+
+
         public static void ChapterOneScenarioOneOptionOne(Fighter enemy, Fighter petya, Ranking rank){
             Scanner sc = new Scanner(System.in);
             System.out.println("(Ir a casa de Vasya y encotrar su portatil)");
@@ -181,21 +183,13 @@ public class Main {
             System.out.println("");
             System.out.println("1 - subir por las escaleras\n2 - Subir por un ascensor");
             System.out.println("");
-
         int escalerasAscensor = sc.nextInt();
         switch(escalerasAscensor){
-            case 1:
-            System.out.println("Pues vamos a subir por las escaleras");
-            break;
-            case 2:
-            System.out.println
-            ("<<Pulsa el boton para llamar el ascensor>>\n Parece que no funciona, \npues vamos a subir por las escaleras ");
-            break;
-
+            case 1: System.out.println("Pues vamos a subir por las escaleras");break;
+            case 2: System.out.println("<<Pulsa el boton para llamar el ascensor>>\n Parece que no funciona, \npues vamos a subir por las escaleras ");break;
         }
         System.out.println("Oh no, Sentinel ");
         System.out.println("Objetivo: ganar a Sentinel");
-
         boolean win = Battle(enemy, petya);
         if(win){
             System.out.println("You win");
@@ -204,10 +198,10 @@ public class Main {
         else{
             System.out.println("You lost");
             System.out.println("Try again");
-
+            }
         }
 
-    }
+
 
 
     public static void ChapterOneScenarioOne(Fighter enemy, Fighter petya, Ranking rank){

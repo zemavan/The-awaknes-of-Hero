@@ -2,6 +2,9 @@ public class Ranking
 {
     private String username;
     private int points;
+    private int power;
+    private int investigator;
+    private int intellegent;
 
 
     public Ranking(String username, int points){
