@@ -19,14 +19,14 @@ public class Fighter{
     public int attack(Fighter target)
     {
         Random rand = new Random();
-        int damage = rand.nextInt(minDamage, maxDamage);
+        int damage = rand.nextInt(minDamage, maxDamage + 1);
         target.takeDamage(damage);
         return damage;
     }
 
     public void heal(int amount)
     {
-        hp = Math.max(maxHp, hp + amount);
+        hp = Math.min(maxHp, hp + amount);
     }
     public boolean isAlive()
     {

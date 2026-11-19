@@ -1,6 +1,11 @@
 import java.util.Scanner;
+
+
+
 import java.util.Random;
 public class Main {
+
+        static final
         Scanner sc = new Scanner(System.in);
         public static void ClearConsole() {
             System.out.print("\033[H\033[2J");
@@ -74,7 +79,7 @@ public class Main {
 
         }
 
-        public static void ChapterOneScenarioOneOptionThree(Fighter enemy, Fighter petya, Ranking rank){
+        public static void ChapterOneScenarioOneOptionThree(Fighter enemy, Fighter petya, Player rank){
             Scanner sc = new Scanner(System.in);
             System.out.println("Vasya esta en coma, por lo que no me puede escribir eso");
             System.out.println("Admeas estoy cansado, lo revisare despues si es un virus");
@@ -85,7 +90,7 @@ public class Main {
 
 
         }
-        public static void ChapterOneScenarioOneOptionTwo(Ranking rank){
+        public static void ChapterOneScenarioOneOptionTwo(Player rank){
             Scanner sc = new Scanner(System.in);
             boolean running = true;
             while(running){
@@ -135,7 +140,7 @@ public class Main {
             return option.equals("Y");
 
         }
-        public static void JournalCheck(Ranking rank){
+        public static void JournalCheck(Player rank){
             Scanner sc = new Scanner(System.in);
             int counter = 0;
             String result = "journalctl -u -ssh -f";
@@ -166,6 +171,20 @@ public class Main {
             System.out.println("Hemos terminado con el analisis del sistema, para continuar con el juego introduce cualquier numero:  ");
             System.out.println(rank.getPoints());
         }
+
+        public static int portatilEncontradoMensaje(){
+            Scanner sc = new Scanner(System.in);
+
+            System.out.println("En el portatil pone: El portatil esta conectado a la Quantum Impresora 3D");
+            System.out.println("1 - SuperGun(+10 de damage), 2 - Vendas(+30 de hp UNA VEZ por juego)");
+            System.out.println("Puedes elegir hasta 1 objeto para tus proximas aventuras");
+
+            System.out.println("introduce el numero de la opcion: ");
+            int inventoryChoose = sc.nextInt();
+            return inventoryChoose;
+        }
+
+
 
          public static void encontrarPortatil(){
              Scanner sc = new Scanner(System.in);
@@ -232,7 +251,7 @@ public class Main {
                 }
 
 
-        public static void ChapterOneScenarioOneOptionOne(Fighter enemy, Fighter petya, Ranking rank){
+        public static void ChapterOneScenarioOneOptionOne(Fighter enemy, Fighter petya, Player rank){
             Scanner sc = new Scanner(System.in);
             System.out.println("(Ir a casa de Vasya y encotrar su portatil)");
             System.out.println("Petya coge una bici y va a la casa donde antes vivia Vasya");
@@ -263,7 +282,7 @@ public class Main {
 
 
 
-    public static void ChapterOneScenarioOne(Fighter enemy, Fighter petya, Ranking rank){
+    public static void ChapterOneScenarioOne(Fighter enemy, Fighter petya, Player rank){
         Scanner sc = new Scanner(System.in);
         boolean running = true;
         while(running){
@@ -297,14 +316,15 @@ public class Main {
 
 
 
-     public static void main(String[] args){ ////////////////////////////main
+    public static void main(String[] args){ ////////////////////////////main
     Scanner sc = new Scanner(System.in);
     System.out.println("Put ur nickname: ");
     String name = sc.nextLine();
 
-    Ranking rank = new Ranking(name, 0);
-    Fighter enemy = new Fighter("Sentinel", 100, 25);
-    Fighter petya = new Fighter("Petya", 100, 25);
+    Player rank = new Player(name, 0);
+    // public Fighter(String name, int hp, int maxHp, int maxDamage, int minDamage)
+    Fighter enemy = new Fighter("Sentinel", 100, 100, 20, 10);
+    Fighter petya = new Fighter("Petya", 100, 100, 20, 10);
 
     boolean running = true;
     while(running){
@@ -317,8 +337,8 @@ public class Main {
             ChapterOneScenarioOne(enemy, petya, rank);
             break;
             case 2: System.out.println("Rankings --");
-            System.out.println(rank.getUsername());
-            System.out.println(rank.getPoints());
+            System.out.println("Username: " + rank.getUsername());
+            System.out.println("Points: " +  rank.getPoints());
             break;
             case 3: System.out.println("Options --");
             break;
