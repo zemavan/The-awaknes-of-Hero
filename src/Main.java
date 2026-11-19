@@ -170,8 +170,156 @@ public class Main {
             }
             System.out.println("Hemos terminado con el analisis del sistema, para continuar con el juego introduce cualquier numero:  ");
             System.out.println(rank.getPoints());
+        }
 
-         }
+//         public static void optionAoptTwo(){
+//
+//         }
+//          }
+//          public static int optionA(){
+//             Scanner sc = new Scanner(System.in);
+//             System.out.println("2 - Look at the fridge");
+//             System.out.println("3 - Look working table");
+//             int option = sc.nextInt();
+//             switch(option){
+//                 case 2:
+//                 System.out.println("2 - Look at the fridge");
+//                 case 3:
+//                 System.out.println("3 - Look working table");
+//
+//             }
+//             return option;
+//          }
+//          public static int optionB(){
+//              Scanner sc = new Scanner(System.in);
+//              System.out.println("1 - Look behind sofa");
+//              System.out.println("3 - Look working table");
+//              int option = sc.nextInt();
+//              switch(option){
+//                  case 2:
+//                  System.out.println("2 - Look at the fridge");
+//                  case 3:
+//                  System.out.println("3 - Look working table");
+//              }
+//              return option;
+//          }
+//
+//          public static void optionC(){
+//              Scanner sc = new Scanner(System.in);
+//              int option = sc.nextInt();
+//              if(option == 3) System.out.println("YOU FOUND IT");
+//
+//          }
+
+         // дарова. Я пытаюсь симулировать интерактивное меню через cli консоль.
+         // Я хочу сделать так чтобы у юзера было меню из трех вариантов: А, Б, С.
+         // где истенной будет ответ С.
+         // Если юзер сначала выберает А то ему печатается меню с выбором Б и С.
+         // Если между Б и С юзер выберает Б то у него в меню печатается только С,
+         // так как А и Б уже были выбраны.
+//          public static int encontrarPortatil(){
+//              Scanner sc = new Scanner(System.in);
+//              System.out.println("huh, that was easy. Lets find this laptop");
+//              System.out.println("");
+//              System.out.println("1 - Look behind sofa");
+//              System.out.println("2 - Look at the fridge");
+//              System.out.println("3 - Look working table");
+//              int option = sc.nextInt();
+//              switch(option){
+//                  case 1:
+//                  System.out.println("See sofa");
+//                  System.out.println("hm, beer and pizza...");
+//                  optionA();
+//                  case 2:
+//                  System.out.println("See fridge");
+//                  System.out.println("absolutly nothing here");
+//                  optionB();
+//                  case 3: System.out.println("see working table");
+//                  optionC();
+//
+//              }
+//              return option;
+//          }
+
+
+         public static void encontrarPortatil(){
+             Scanner sc = new Scanner(System.in);
+             System.out.println("huh, that was easy. Lets find this laptop");
+             System.out.println("");
+             String a = "1 - Look behind sofa";
+             String b = "2 - Look at the fridge";
+             String c = "3 - Look working table";
+
+             System.out.println(a);
+             System.out.println(b);
+             System.out.println(c);
+             int option = sc.nextInt();
+             if(option == 1){
+                 System.out.println("hm, beer and pizza...");
+                 System.out.println(b);
+                 System.out.println(c);
+                 int sub_option = sc.nextInt();
+                 if(sub_option == 2){
+                    int sub_sub_option = 0;
+                    while(sub_sub_option != 3){
+                        System.out.println("absolutly nothing here");
+                        System.out.println(c);
+                        sub_sub_option = sc.nextInt();
+
+                        if(sub_sub_option == 3){
+                            System.out.println("YOU FOUND IT");
+                            break;
+                        }
+                    }
+
+                 }
+
+                 }
+                 if(option == 2){
+                     System.out.println("absolutly nothing here");
+                     System.out.println(a);
+                     System.out.println(c);
+                     int sub_option = sc.nextInt();
+
+                     if(sub_option == 1){
+                        int sub_sub_option = 0;
+                        while(sub_sub_option != 3){
+                            System.out.println("hm, beer and pizza...");
+                            System.out.println(c);
+                            sub_sub_option = sc.nextInt();
+
+                            if(sub_sub_option == 3){
+                                System.out.println("YOU FOUND IT");
+                                break;
+                            }
+                        }
+
+                     }if(sub_option == 3){
+                         System.out.println("YOU FOUND IT");
+
+                     }
+
+                     }
+                     if(option == 3){
+                         System.out.println("YOU FOUND IT");
+                     }
+
+                }
+//              switch(option){
+//                  case 1:
+//                  System.out.println("See sofa");
+//                  System.out.println("hm, beer and pizza...");
+//                  optionA();
+//                  case 2:
+//                  System.out.println("See fridge");
+//                  System.out.println("absolutly nothing here");
+//                  optionB();
+//                  case 3: System.out.println("see working table");
+//                  optionC();
+//
+//              }
+//              return option;
+//          }
 
 
         public static void ChapterOneScenarioOneOptionOne(Fighter enemy, Fighter petya, Ranking rank){
@@ -194,6 +342,7 @@ public class Main {
         if(win){
             System.out.println("You win");
             System.out.println("Falta encontrar el portatil de Vasya");
+            encontrarPortatil();
         }
         else{
             System.out.println("You lost");
