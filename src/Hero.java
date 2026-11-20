@@ -16,18 +16,17 @@ public class Hero{
         System.out.println(this.nombre);
     }
 
-    public int takeDamage(int amount, Random rand){
-        int amout = rand.nextInt(minDamage,maxDamage + 1);
-        int hp = Math.max(0, hp - amount);
-        return hp;
+    public void takeDamage(int damage){
+        // int amount = rand.nextInt(minDamage,maxDamage + 1);
+        int hp = Math.max(0, hp - damage);
+
     }
-    public int heal(int amount){
-        int hp = Math.max(0, hp + amount);
-        return hp;
+    public void heal(int amount){
+        int hp = Math.min(maxHp, hp + amount);
     }
     public int attack(Hero target, Random rand){
         int calcDamage = rand.nextInt(minDamage,maxDamage + 1);
-        target.takeDamage(calcDamage)
+        target.takeDamage(calcDamage, rand);
         return calcDamage;
     }
 }
