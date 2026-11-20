@@ -34,4 +34,10 @@ public class Ranking {
         }
     }
 
+    public int size(){
+        return registros.size();
+    }
+    public Reg get(int i){
+        return registros.get(i);
+    }
 }
