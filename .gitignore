@@ -1,2 +1,22 @@
+# Archivos compilados de Java
 *.class
+
+# Carpetas de salida de compilación
 bin/
+target/
+out/
+build/
+
+# Configuración local de IDE y editores
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+.vim/
+*.swp
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
