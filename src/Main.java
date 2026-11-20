@@ -14,6 +14,7 @@ public class Main {
     static final int RESULT_WON = 0;
     static final int RESULT_LOST = 1;
     static final int RESULT_QUIT = 2;
+    static final String RUTA_RANKING = "datos/ranking.xml";
     static void clearConsole(){
         // Source - https://stackoverflow.com/a/10241460
         // Posted by Joni, modified by community. See post 'Timeline' for change history
@@ -168,7 +169,13 @@ public class Main {
     }
 
     public static void main(String[] args){
-    Ranking rank = new Ranking();
+    Ranking rank = RankingXML.cargar(RUTA_RANKING);
+    boolean guardarPermitido = true;
+    if(rank == null){
+        System.out.println("No se puede leer el ranking. Se conserva sin modificar hasta que se corrija");
+        rank = new Ranking();
+        guardarPermitido = false;
+    }
     Scanner sc = new Scanner(System.in);
     Random rand = new Random();
     int option;
@@ -179,10 +186,13 @@ public class Main {
         case 1:
         String username = rString(sc, "introduce tu nickname: ");
         play(username, sc, rand, rank);
+        if(guardarPermitido){
+            RankingXML.guardar(RUTA_RANKING, rank);
+        }
         break;
-        case 2: rank.show(); break;//consultar ranking
-        case 3: ayuda();break;//ayuda
-        case 4: salir();break;//salir
+        case 2: rank.show(); break;
+        case 3: ayuda();break;
+        case 4: salir();break;
         default:
             System.out.println("Tu opcion fuera del rango");
     }
