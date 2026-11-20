@@ -1,0 +1,5 @@
+/ranking/registro/nombre
+/ranking/registro[puntos > 250]/nombre
+/ranking/registro[nombre='ivan']/puntos
+/ranking/registro[puntos = 200 and nombre != 'ivan']/nombre
+count(/ranking/registro[puntos = 200])
