@@ -96,7 +96,6 @@ public class Main {
 
     public static void attacar(Hero turnoatacar, Hero turnorecibir ,Random rand){
         int damage = turnoatacar.attack(turnorecibir, rand);
-        System.out.println("Has echo " + damage + " de danio");
         System.out.println(turnoatacar.returnNombre() + " ataca a " + turnorecibir.returnNombre()
                     + " y causa " + damage + " de danio. Le quedan " + turnorecibir.getHp() + " HP");
         }
@@ -112,7 +111,7 @@ public class Main {
             return false;
         }
         user.heal(inv.usePociones());
-        System.out.println("+25 de vida" + "vida: " + user.getHp());
+        System.out.println("+" + HEAL + " de vida:   " + user.getHp());
         return true;
 
     }
@@ -146,7 +145,7 @@ public class Main {
                 inv.show();
                 break;
                 case 4:
-                return 0;
+                return RERESULT_QUIT;
                 default:
                 System.out.println("Tu opcion fuera del rango");
             }
