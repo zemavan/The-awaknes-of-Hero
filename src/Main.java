@@ -50,7 +50,7 @@ public class Main {
         }
         return result;
     }
-    public static void play(String username, Scanner sc, Random rand){
+    public static void play(String username, Scanner sc, Random rand, Ranking rank){
         Hero user = new Hero(username, HERO_MAX_HP, HERO_MAX_HP, HERO_MAX_DAMAGE, HERO_MIN_DAMAGE);
         Invenatario inv = new Invenatario(POCIONES, HEAL);
         int points = 0;
@@ -73,13 +73,20 @@ public class Main {
                    System.out.println("Fin de la partida.");
                }
                System.out.println("Puntuacion final: " + points);
+               if(rank.add(username, points)){
+                   System.out.println("Has entrado en el ranking.");
+               }else{
+                   System.out.println("No has entrado en el ranking.");
+               }
         }
 
-    public static void ranking(){
-        System.out.println("ranking");
-    }
     public static void ayuda(){
-        System.out.println("ayuda");
+        System.out.println("--- AYUDA ---");
+        System.out.println("Debes vencer a 3 enemigos seguidos.");
+        System.out.println("Cada turno puedes: atacar, usar pocion, ver inventario o abandonar.");
+        System.out.println("Las pociones curan " + HEAL + " puntos (empiezas con " + POCIONES + ").");
+        System.out.println("Cada enemigo vencido da " + POINTS_ENEMY_WIN + " puntos.");
+        System.out.println("Si ganas la aventura, se suma tu vida restante como bonus.");
     }
     public static void salir(){
         System.out.println("salir");
@@ -161,6 +168,7 @@ public class Main {
     }
 
     public static void main(String[] args){
+    Ranking rank = new Ranking();
     Scanner sc = new Scanner(System.in);
     Random rand = new Random();
     int option;
@@ -170,9 +178,9 @@ public class Main {
     switch(option){
         case 1:
         String username = rString(sc, "introduce tu nickname: ");
-        play(username, sc, rand);
+        play(username, sc, rand, rank);
         break;
-        case 2: ranking();break;//consultar ranking
+        case 2: rank.show(); break;//consultar ranking
         case 3: ayuda();break;//ayuda
         case 4: salir();break;//salir
         default:
