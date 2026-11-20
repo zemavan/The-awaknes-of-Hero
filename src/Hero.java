@@ -15,18 +15,27 @@ public class Hero{
     public void getNombre(){
         System.out.println(this.nombre);
     }
+    public String returnNombre(){
+        return nombre;
+    }
+    public int getHp(){
+        return hp;
+    }
+    public boolean fullHp(){
+        return hp == maxHp;
+    }
 
     public void takeDamage(int damage){
-        // int amount = rand.nextInt(minDamage,maxDamage + 1);
-        int hp = Math.max(0, hp - damage);
-
+        hp = Math.max(0, hp - damage);
     }
     public void heal(int amount){
-        int hp = Math.min(maxHp, hp + amount);
+        hp = Math.min(maxHp, hp + amount);
     }
     public int attack(Hero target, Random rand){
         int calcDamage = rand.nextInt(minDamage,maxDamage + 1);
         target.takeDamage(calcDamage, rand);
         return calcDamage;
     }
+
+
 }
