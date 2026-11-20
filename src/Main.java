@@ -38,6 +38,7 @@ public class Main {
             sc.next();
         }
         int result = sc.nextInt();
+        sc.nextLine();
         return result;
     }
     public static String rString(Scanner sc, String text){
@@ -53,7 +54,7 @@ public class Main {
         Hero user = new Hero(username, HERO_MAX_HP, HERO_MAX_HP, HERO_MAX_DAMAGE, HERO_MIN_DAMAGE);
         Invenatario inv = new Invenatario(POCIONES, HEAL);
         int points = 0;
-        int loses = 0;
+        int vencido = 0;
 
         for(int i = 0; i < ENEMY_HP.length; i++){
             Hero enemy = new Hero("Sentinel " + i, ENEMY_HP[i], ENEMY_HP[i], ENEMY_MAX_DAMAGE, ENEMY_MIN_DAMAGE);
@@ -61,11 +62,11 @@ public class Main {
             if(result != RESULT_WON){
                 break;
             }
-            loses++;
+            vencido++;
             points += POINTS_ENEMY_WIN;
             System.out.println(enemy.returnNombre() + " derrotado. Puntos: " + points);
             }
-            if(loses == ENEMY_HP.length){
+            if(vencido == ENEMY_HP.length){
                    points += user.getHp();   // bonus de vida solo al ganar la aventura
                    System.out.println("Has ganado la aventura!");
                } else {
@@ -99,7 +100,6 @@ public class Main {
         System.out.println(turnoatacar.returnNombre() + " ataca a " + turnorecibir.returnNombre()
                     + " y causa " + damage + " de danio. Le quedan " + turnorecibir.getHp() + " HP");
         }
-    }
 
     public static boolean usarPociones(Hero user, Invenatario inv){
         if(!inv.hayPociones()){
@@ -111,7 +111,7 @@ public class Main {
             return false;
         }
         user.heal(inv.usePociones());
-        System.out.println("+" + HEAL + " de vida:   " + user.getHp());
+        System.out.println("Te curas. Vida:   " + user.getHp());
         return true;
 
     }
@@ -122,7 +122,7 @@ public class Main {
         Invenatario inv,
         Scanner sc, Random rand)
     {
-        System.out.println("Primer enemigo " + enemy.returnNombre());
+        System.out.println("Aparece" + enemy.returnNombre());
         while(user.getHp() > 0 && enemy.getHp()>0){
             EnemyShow();
             boolean cambiarTurno = false;
@@ -145,7 +145,7 @@ public class Main {
                 inv.show();
                 break;
                 case 4:
-                return RERESULT_QUIT;
+                return RESULT_QUIT;
                 default:
                 System.out.println("Tu opcion fuera del rango");
             }
@@ -162,10 +162,6 @@ public class Main {
 
     public static void main(String[] args){
     Scanner sc = new Scanner(System.in);
-    //   String username int hp, int maxHp, int maxDamage, int minDamage)
-    // Hero user = new Hero(username, 100, 100, 20, 10);
-    // Hero enemy = new Hero("Sentinel", 100, 100, 15, 5);
-    // Invenatario inv = new Invenatario(3, 20);
     Random rand = new Random();
     int option;
     do{
@@ -179,6 +175,8 @@ public class Main {
         case 2: ranking();break;//consultar ranking
         case 3: ayuda();break;//ayuda
         case 4: salir();break;//salir
+        default:
+            System.out.println("Tu opcion fuera del rango");
     }
     }while(option!=4);
 }
