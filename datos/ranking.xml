@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE ranking SYSTEM "ranking.dtd">
+<ranking>
+    <registro>
+        <nombre>test2</nombre>
+        <puntos>333</puntos>
+    </registro>
+    <registro>
+        <nombre>ivan</nombre>
+        <puntos>200</puntos>
+    </registro>
+    <registro>
+        <nombre>test1</nombre>
+        <puntos>200</puntos>
+    </registro>
+    <registro>
+        <nombre>2</nombre>
+        <puntos>200</puntos>
+    </registro>
+</ranking>
