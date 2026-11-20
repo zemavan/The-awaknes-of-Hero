@@ -28,6 +28,6 @@ public class Hero{
     public int attack(Hero target, Random rand){
         int calcDamage = rand.nextInt(minDamage,maxDamage + 1);
         target.takeDamage(calcDamage)
-        return damage;
+        return calcDamage;
     }
 }
