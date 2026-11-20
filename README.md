@@ -1,5 +1,5 @@
-# The-awaknes-of-Hero
-EN version
+# The Awakening of the Hero
+
 Neural networks are taking over the world. Petya Shnurov visited his friend every day after he fell into a coma following a severe car crash. Shnurov had worked in a call center his entire life, while Vasya was a hardcore computer geek.
 
 September 15, 2059. A cold Monday.
