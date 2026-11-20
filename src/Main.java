@@ -12,8 +12,8 @@ public class Main {
     static final int HEAL = 25;
     static final int POINTS_ENEMY_WIN = 100;
     static final int RESULT_WON = 0;
-    static final int RESULT_LOST = 0;
-    static final int RESULT_QUIT = 0;
+    static final int RESULT_LOST = 1;
+    static final int RESULT_QUIT = 2;
     static void clearConsole(){
         // Source - https://stackoverflow.com/a/10241460
         // Posted by Joni, modified by community. See post 'Timeline' for change history
@@ -134,7 +134,7 @@ public class Main {
             int option = rInt(sc);
             switch(option){
                 case 1:
-                attacar(enemy, user, rand);
+                attacar(user, enemy, rand);
                 cambiarTurno = true;
                 break;
                 case 2:
