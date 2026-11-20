@@ -25,7 +25,7 @@ public class Hero{
         return hp == maxHp;
     }
 
-    public void takeDamage(int damage){
+    public void takeDamage(int damage, Random rand){
         hp = Math.max(0, hp - damage);
     }
     public void heal(int amount){
