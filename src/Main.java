@@ -67,6 +67,7 @@ public class Main {
             points += POINTS_ENEMY_WIN;
             System.out.println(enemy.returnNombre() + " derrotado. Puntos: " + points);
             }
+            System.out.println("");
             if(vencido == ENEMY_HP.length){
                    points += user.getHp();   // bonus de vida solo al ganar la aventura
                    System.out.println("Has ganado la aventura!");
@@ -76,8 +77,10 @@ public class Main {
                System.out.println("Puntuacion final: " + points);
                if(rank.add(username, points)){
                    System.out.println("Has entrado en el ranking.");
+                   System.out.println("");
                }else{
                    System.out.println("No has entrado en el ranking.");
+                   System.out.println("");
                }
         }
 
@@ -132,6 +135,7 @@ public class Main {
     {
         System.out.println("Aparece" + enemy.returnNombre());
         while(user.getHp() > 0 && enemy.getHp()>0){
+            System.out.println("");
             EnemyShow();
             boolean cambiarTurno = false;
             System.out.println(enemy.returnNombre() + " HP: " + enemy.getHp());
@@ -139,6 +143,7 @@ public class Main {
             System.out.println("1 - Atacar  2 - Usar pocion  3 - Inventario  4 - Abandonar");
             System.out.print("Tu opcion: ");
             int option = rInt(sc);
+            System.out.println("");
             switch(option){
                 case 1:
                 attacar(user, enemy, rand);
